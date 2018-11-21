@@ -78,7 +78,7 @@ group by sistema.descricao
 
 -- Selecionar quantas raças existem em cada tem em cada planeta
 
-select planeta.nome, count (raca.nome) from planeta
+select planeta.nome, count (raca.nome) as 'QTD' from planeta
 join planeta_raca on planeta_raca.fk_planeta = planeta.id
 join raca on planeta_raca.fk_raca = raca.id
 group by planeta.nome
