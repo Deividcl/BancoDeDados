@@ -57,6 +57,8 @@ values (1,1),
        (1,2), 
        (2,2) 
 
+insert into planeta (id, nome, descricao) values (30, 'Sol', 'Fogo') 
+
 select * from raca
 join planeta_raca on raca.id = planeta_raca.fk_raca
 join planeta on planeta.id = planeta_raca.fk_planeta
@@ -83,6 +85,15 @@ join planeta_raca on planeta_raca.fk_planeta = planeta.id
 join raca on planeta_raca.fk_raca = raca.id
 group by planeta.nome
 
+
+-- Como usar o update, apaga apenas o atributo
+
+update planeta set nome = '' where nome = 'Terra'
+
+-- Como usar o delete, apaga toda a tupla
+delete from planeta where id = 30
+
+select * from planeta
 
 
 --sp_help raca ou sp_columns raca  (mostra informaçoes das tabelas)
