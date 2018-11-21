@@ -53,3 +53,7 @@ insert into raca
 values (1, 'Brancos', 'pele clara', '01/01/01'),
 	   (2, 'Negros', 'pele escura', '01/01/01')
 select * from raca
+
+
+
+--sp_help raca ou sp_columns raca  (mostra informaçoes das tabelas)
