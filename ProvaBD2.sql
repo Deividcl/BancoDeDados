@@ -42,17 +42,42 @@ references raca(id)
 insert into planeta
 values (1, 'Terra', 'Cheio de água', '1'),
 	   (2, 'Marte', 'Extraterrestre', '2')
-select * from planeta
 
 insert into sistema
 values (1, 'Sistema Solar'),
 	   (2, 'Sistema Estelar')
-select * from Sistema
 
-insert into raca
+insert into raca 
 values (1, 'Brancos', 'pele clara', '01/01/01'),
-	   (2, 'Negros', 'pele escura', '01/01/01')
+	   (2, 'Negros', 'pele escura', '02/02/02')
+
+insert into planeta_raca 
+values (1,1), 
+       (1,2), 
+       (2,2) 
+
 select * from raca
+join planeta_raca on raca.id = planeta_raca.fk_raca
+join planeta on planeta.id = planeta_raca.fk_planeta
+
+-- Selecionar o nome das raças dentro do sistema solar
+select raca.nome as 'Raça',
+planeta.nome as 'Planeta',
+sistema.descricao as 'Sistema' from raca
+join planeta_raca on raca.id = planeta_raca.fk_raca
+join planeta on planeta.id = planeta_raca.fk_planeta
+join sistema on planeta.fk_sistema = sistema.id
+where sistema.descricao = 'Sistema Solar'
+
+-- Selecionar quantos planetas existem em cada tem em cada sistemas
+select sistema.descricao as 'Sistema',
+       count(planeta.nome) from planeta
+join sistema on planeta.fk_sistema = sistema.id
+group by sistema.descricao
+
+-- Selecionar quantas raças existem em cada tem em cada planeta
+
+
 
 
 
