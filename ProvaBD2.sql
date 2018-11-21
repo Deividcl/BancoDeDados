@@ -40,8 +40,9 @@ references raca(id)
 
 -- Inserir atributos nas tabelas
 insert into planeta
-values (1, 'Terra', 'Cheio de água', '1'),
-	   (2, 'Marte', 'Extraterrestre', '2')
+values (1, 'Terra', 'Cheio de água', 1),
+	   (2, 'Marte', 'Extraterrestre', 2)
+	   
 
 insert into sistema
 values (1, 'Sistema Solar'),
@@ -77,7 +78,10 @@ group by sistema.descricao
 
 -- Selecionar quantas raças existem em cada tem em cada planeta
 
-
+select planeta.nome, count (raca.nome) from planeta
+join planeta_raca on planeta_raca.fk_planeta = planeta.id
+join raca on planeta_raca.fk_raca = raca.id
+group by planeta.nome
 
 
 
