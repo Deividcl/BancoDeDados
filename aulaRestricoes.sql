@@ -72,8 +72,9 @@ create table projeto(
 	constraint fk_proejto_engenheiro foreign key(engenheiro_responsavel,pessoa_responsavel) 
 	references engenheiro(chave,fk_pessoa)
 )
+select * from engenheiro
 
-insert into projeto values(12,13,1,1)
+insert into projeto values(12,13,1,2)
 
 --imagina que para alguns usuários do BD é necessário fornecer apenas o nome do projeto e o crea do responsavel
 --como fazer isso? View seria uma opcao...
@@ -84,6 +85,7 @@ create view responsavel as select p.CEA as PROJETO, e.crea as CREA from projeto 
 						      p.pessoa_responsavel = e.fk_pessoa
 
 select * from responsavel
+select * from responsavel where PROJETO = 11
 
 --order by + view
 create view responsavel2 as select p.CEA as PROJETO, e.crea as CREA from projeto p
