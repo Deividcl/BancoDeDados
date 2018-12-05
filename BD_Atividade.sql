@@ -75,27 +75,31 @@ returns table
 as return (select quantidade as Quantidade, descricao as Descrição from itens_compra
 join produto on chave_produto = produto)
 
-select distinct count (Quantidade) as QTDA from compras_compra(null)
-
-
+select Quantidade as QTDA from compras_compra(null)
+select * from compras_compra(null)
 --5)crie um novo atributo na tabela cliente 
  -- RG Varchar(20) 
 
- select * from cliente
- alter table cliente add RG varchar (20)
+  alter table cliente add RG varchar (20)
+  select * from cliente
 
  --faça um procedimento que mostre o nome e o preço total dos produtos comprados em cada compra, bem como o valor total da compra. O layout deve ficar
  --como o exemplo abaixo:
- create view tabela1 as select descricao as Descrição, preco as Preço from produto
- group by descricao
 
- select descricao from produto 
- union
- select preco from produto 
- union
- select sum((1 + 2)), preco from produto
- order by sum, preco
- select sum((1 + 5))
+ create view tabela3 as select descricao as Descrição, preco as Preço from itens_compra
+ join produto on produto = chave_produto
+ join compra on compra = chave_compra
+
+ select * from tabela3 order by Preço
+
+ select  Descrição [Compra feita], Preço [Valor],
+    SUM(Preço) [Valor Total]
+FROM
+   tabela3
+  GROUP BY 
+  Preço, Descrição
+  ORDER BY 
+  Preço, Descrição
 
 --Coca-Cola   2.0
 --Pao         1.0
@@ -106,4 +110,3 @@ select distinct count (Quantidade) as QTDA from compras_compra(null)
 --Brahma      100.0
 --
 --Total       105.0
-
