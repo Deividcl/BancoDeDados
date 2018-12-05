@@ -70,13 +70,22 @@ select distinct Descrição, Quantidade from COP_retorno(null)
 
 --4)Faça uma função que dado um id de compra, recebido por parâmetro,  retorne a quantidade de produtos que foram comprados
 
-create function compras_compra (@chave_compra decimal)
-returns table
-as return (select quantidade as Quantidade, descricao as Descrição from itens_compra
-join produto on chave_produto = produto)
+--create function Lista_compras (@chave_compra decimal)
+--returns table
+--as return (select distinct descricao as Descrição,quantidade as Quantidade from itens_compra
+--join produto on chave_produto = produto)
 
-select Quantidade as QTDA from compras_compra(null)
-select * from compras_compra(null)
+create function L_compras (@chave_compra decimal)
+returns table
+as return (select distinct compra as Compra, descricao as Descrição,quantidade as Quantidade from itens_compra
+join produto on chave_produto = produto
+join compra on chave_compra = compra)
+
+select Compra, Descrição, Quantidade from L_compras(null) 
+where Compra = 2
+
+select * from L_compras(null)
+
 --5)crie um novo atributo na tabela cliente 
  -- RG Varchar(20) 
 
