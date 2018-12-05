@@ -1,5 +1,5 @@
-create database preprova
-use preprova
+create database BD_Atividade
+use BD_Atividade
 
 create table produto(
 	chave_produto int not null,
@@ -95,16 +95,17 @@ select * from L_compras(null)
  --faça um procedimento que mostre o nome e o preço total dos produtos comprados em cada compra, bem como o valor total da compra. O layout deve ficar
  --como o exemplo abaixo:
 
- create view tabela3 as select descricao as Descrição, preco as Preço from itens_compra
+  create view tabelinha as select descricao as Descrição, preco as Preço, quantidade as Quantidade from itens_compra
  join produto on produto = chave_produto
  join compra on compra = chave_compra
 
- select * from tabela3 order by Preço
+ select * from tabelinha order by Preço
 
  select  Descrição [Compra feita], Preço [Valor],
-    SUM(Preço) [Valor Total]
+    SUM(Preço) [Valor Total],
+	SUM(Quantidade) [Total]
 FROM
-   tabela3
+   tabelinha
   GROUP BY 
   Preço, Descrição
   ORDER BY 
