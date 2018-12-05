@@ -102,7 +102,7 @@ select * from L_compras(null)
  select * from tabelinha order by Preço
 
  select  Descrição [Compra feita], Preço [Valor],
-    SUM(Preço) [Valor Total],
+    SUM(Preço) [Valor P/Compra],
 	SUM(Quantidade) [Total]
 FROM
    tabelinha
